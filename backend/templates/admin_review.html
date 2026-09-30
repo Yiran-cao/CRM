@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block title %}考核管理 - CRM 系统{% endblock %}
+{% block content %}
+<div class="page">
+    <div class="page-header">
+        <h2>🔍 考核管理</h2>
+        <button class="btn-primary" onclick="openCreateDealerModal()">➕ 新建经销商</button>
+    </div>
+
+    <!-- 经销商列表 -->
+    <div class="page-body" style="margin-bottom:20px">
+        <h3 style="margin-bottom:16px;font-size:15px">👥 经销商列表（周期：<span id="adminPeriod">--</span>）</h3>
+        <div id="dealerListContainer">
+            <div class="empty-state"><div class="icon">👥</div><p>加载中...</p></div>
+        </div>
+    </div>
+
+    <!-- 选中经销商的项目 -->
+    <div class="page-body" style="margin-bottom:20px;display:none" id="dealerProjectsPanel">
+        <h3 style="margin-bottom:16px;font-size:15px">📁 <span id="dealerProjectTitle">经销商项目</span></h3>
+        <div id="dealerProjectTable"></div>
+    </div>
+
+    <!-- 选中经销商的积分 -->
+    <div class="page-body" style="display:none" id="dealerPointsPanel">
+        <h3 style="margin-bottom:16px;font-size:15px">⭐ 积分历史</h3>
+        <div id="dealerPointsTable"></div>
+    </div>
+</div>
+
+<!-- 新建经销商弹窗 -->
+<div class="modal-overlay" id="dealerModal">
+    <div class="modal">
+        <h3>➕ 新建经销商</h3>
+        <div class="form-group"><label>姓名 *</label><input type="text" id="newDealerName" required></div>
+        <div class="form-group"><label>用户名 *</label><input type="text" id="newDealerUsername" required></div>
+        <div class="form-group"><label>密码 *</label><input type="password" id="newDealerPassword" required></div>
+        <div class="form-group"><label>经销商名称 *</label><input type="text" id="newDealerCompany" placeholder="如：XX医疗器械有限公司" required></div>
+        <div class="modal-actions">
+            <button class="btn-secondary" onclick="closeDealerModal()">取消</button>
+            <button class="btn-primary" onclick="createDealer()">创建</button>
+        </div>
+    </div>
+</div>
+<div class="toast" id="toast"></div>
+{% endblock %}
+{% block extra_js %}
+<script src="/static/js/admin.js"></script>
+{% endblock %}

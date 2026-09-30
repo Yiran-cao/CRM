@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}单据详情 - CRM 系统{% endblock %}
+{% block content %}
+<div class="page" style="max-width:1200px">
+    <div class="detail-topbar">
+        <button class="btn-secondary" onclick="window.location.href='/projects'">← 返回</button>
+        <h2 id="detailTitle">单据详情</h2>
+        <span class="detail-status" id="detailStatus">--</span>
+        <span style="flex:1"></span>
+        <button class="btn-primary" id="detailEditBtn" onclick="goEdit()" style="display:none">✏️ 编辑</button>
+    </div>
+
+    <div class="detail-layout">
+        <!-- 左侧：基础信息卡片 -->
+        <div class="detail-left">
+            <div class="detail-card">
+                <div class="detail-card-title">📋 基础信息</div>
+                <div class="detail-grid" id="detailInfo"></div>
+            </div>
+            <div class="detail-card">
+                <div class="detail-card-title">👥 决策人</div>
+                <div id="detailMakers"></div>
+            </div>
+        </div>
+
+        <!-- 右侧：时间线 -->
+        <div class="detail-right">
+            <div class="detail-card">
+                <div class="detail-card-title">🕐 操作时间线</div>
+                <div id="detailTimeline"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="toast" id="toast"></div>
+{% endblock %}
+{% block extra_js %}
+<script src="/static/js/project_detail.js"></script>
+{% endblock %}

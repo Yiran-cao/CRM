@@ -1,0 +1,27 @@
+# 数据库文件（含本地数据，勿提交）
+*.db
+*.sqlite3
+backups/
+
+# 环境变量（含密钥）
+.env
+.env.*
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+
+# IDE
+.vscode/
+.idea/
+
+# 前端开发残留（本项目使用 Jinja2 模板）
+frontend/
+
+# 系统文件
+.DS_Store
+Thumbs.db

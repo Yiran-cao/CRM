@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}CRM 销售管理系统{% endblock %}</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    {% if hide_sidebar %}
+        {% block full_content %}{% endblock %}
+    {% else %}
+    <div class="app-layout">
+        {% include "sidebar.html" %}
+        <main class="main-content">
+            {% block content %}{% endblock %}
+        </main>
+    </div>
+    {% endif %}
+    <script src="/static/js/app.js"></script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

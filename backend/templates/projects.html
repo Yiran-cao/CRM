@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block title %}项目管理 - CRM 系统{% endblock %}
+{% block content %}
+<div class="page">
+    <div class="page-header">
+        <h2>📁 项目管理</h2>
+        <button class="btn-primary" onclick="goNew()">➕ 新建项目</button>
+    </div>
+    <div class="page-body">
+        <div class="tabs">
+            <button class="tab active" onclick="switchTab(false)">本年度项目</button>
+            <button class="tab" onclick="switchTab(true)">往年结单项目</button>
+        </div>
+        <div class="filter-bar">
+            <input type="text" class="filter-input" id="filterCustomer" placeholder="客户名称">
+            <select class="filter-select" id="filterStage">
+                <option value="">全部阶段</option>
+                <option value="1">1-潜在客户</option>
+                <option value="2">2-初步接触</option>
+                <option value="3">3-持续跟进</option>
+                <option value="4">4-成交客户</option>
+                <option value="5">5-忠诚客户</option>
+                <option value="6">6-无效客户</option>
+            </select>
+            <select class="filter-select" id="filterProvince" onchange="onProvinceChange()">
+                <option value="">全部省份</option>
+            </select>
+            <select class="filter-select" id="filterCity">
+                <option value="">全部地区</option>
+            </select>
+            <button class="btn-primary" onclick="loadProjects()">查询</button>
+            <button class="btn-secondary" onclick="resetFilters()">重置</button>
+        </div>
+        <div id="projectTableContainer">
+            <div class="empty-state">
+                <div class="icon">📁</div>
+                <p>暂无项目数据，点击右上角"新建项目"开始</p>
+            </div>
+        </div>
+
+        <!-- 阶段图例 -->
+        <div class="stage-legend" id="stageLegend" style="margin-top:16px">
+            <span class="legend-title">📊 阶段图例：</span>
+            <span class="legend-item"><span class="stage-badge info">💡 潜在/初步</span></span>
+            <span class="legend-item"><span class="stage-badge success">🤝 跟进/成交/忠诚</span></span>
+            <span class="legend-item"><span class="stage-badge danger">🚫 无效客户</span></span>
+        </div>
+    </div>
+</div>
+<div class="toast" id="toast"></div>
+{% endblock %}
+{% block extra_js %}
+<script src="/static/js/projects.js"></script>
+{% endblock %}

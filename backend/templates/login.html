@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block title %}登录 - CRM 销售管理系统{% endblock %}
+{% set hide_sidebar = true %}
+{% block full_content %}
+<div class="login-page">
+    <div class="login-card">
+        <div class="login-header">
+            <div class="login-icon">📊</div>
+            <h1>CRM 销售管理系统</h1>
+            <p>医疗器械销售项目管理平台</p>
+        </div>
+        <form class="login-form" onsubmit="handleLogin(event)">
+            <div class="login-error" id="loginError"></div>
+            <div class="form-group">
+                <label>用户名</label>
+                <input type="text" id="username" placeholder="请输入用户名" required autofocus>
+            </div>
+            <div class="form-group">
+                <label>密码</label>
+                <input type="password" id="password" placeholder="请输入密码" required>
+            </div>
+            <button type="submit" class="login-btn" id="loginBtn">登 录</button>
+        </form>
+        <div class="login-hint">
+            <p>演示账号：管理员 admin / admin123</p>
+            <p>经销商 dealer1 / 123456</p>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block extra_js %}
+<script>
+async function handleLogin(e) {
+    e.preventDefault();
+    const btn = document.getElementById('loginBtn');
+    const errEl = document.getElementById('loginError');
+    errEl.classList.remove('show');
+    btn.disabled = true;
+    btn.textContent = '登录中...';
+    try {
+        await login(
+            document.getElementById('username').value,
+            document.getElementById('password').value
+        );
+        window.location.href = '/dashboard';
+    } catch (err) {
+        errEl.textContent = err.message;
+        errEl.classList.add('show');
+    } finally {
+        btn.disabled = false;
+        btn.textContent = '登 录';
+    }
+}
+</script>
+{% endblock %}

@@ -1,0 +1,30 @@
+# Git
+.git
+.gitignore
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+
+# 本地数据库文件（容器内新建，不从宿主机拷贝）
+*.db
+*.sqlite3
+data/
+backups/
+
+# 环境变量与密钥
+.env
+.env.*
+
+# IDE
+.vscode/
+.idea/
+
+# 测试
+.pytest_cache/
+tests/
+test_*.db

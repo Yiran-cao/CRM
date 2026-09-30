@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% block title %}编辑单据 - CRM 系统{% endblock %}
+{% block content %}
+<div class="page" style="max-width:960px">
+    <div class="page-header">
+        <h2 id="editPageTitle">📝 编辑单据</h2>
+    </div>
+
+    <div class="page-body" id="editForm">
+        <!-- ① 基础信息 -->
+        <div class="form-section">
+            <div class="form-section-title">① 基础信息</div>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label>客户名称 <span class="req">*</span></label>
+                    <input type="text" id="fCustomerName" placeholder="请输入客户名称">
+                </div>
+                <div class="form-group">
+                    <label>省份 <span class="req">*</span></label>
+                    <select id="fProvince" onchange="onProvinceChange()"><option value="">请选择省份</option></select>
+                </div>
+                <div class="form-group">
+                    <label>地区 <span class="req">*</span></label>
+                    <select id="fCity"><option value="">请先选择省份</option></select>
+                </div>
+                <div class="form-group">
+                    <label>产品 <span class="req">*</span></label>
+                    <select id="fProduct"><option value="">请选择产品</option></select>
+                </div>
+                <div class="form-group">
+                    <label>阶段 <span class="req">*</span></label>
+                    <select id="fStage"></select>
+                </div>
+                <div class="form-group">
+                    <label>预算（万元）</label>
+                    <div class="stepper">
+                        <button type="button" class="stepper-btn" onclick="stepBudget(-1)">−</button>
+                        <input type="number" id="fBudget" step="0.01" min="0" value="0">
+                        <button type="button" class="stepper-btn" onclick="stepBudget(1)">＋</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ② 科室信息（决策人） -->
+        <div class="form-section">
+            <div class="form-section-title">② 科室信息（决策人）<span class="section-note">第一个为主要决策人（必填）</span></div>
+            <div id="decisionMakersContainer"></div>
+            <button type="button" class="btn-secondary btn-add-maker" onclick="addDecisionMaker()">＋ 添加决策人</button>
+        </div>
+
+        <!-- ③ 扩展信息 -->
+        <div class="form-section">
+            <div class="form-section-title">③ 扩展信息（选填）</div>
+            <div class="form-group">
+                <label>竞争对手及障碍</label>
+                <textarea id="fCompetitor" rows="3" placeholder="请输入主要竞争对手及障碍"></textarea>
+            </div>
+            <div class="form-group">
+                <label>备注</label>
+                <textarea id="fRemark" rows="3" placeholder="请输入备注"></textarea>
+            </div>
+        </div>
+
+        <!-- 底部按钮 -->
+        <div class="modal-actions" style="margin-top:24px">
+            <button class="btn-secondary" onclick="goBack()">取消</button>
+            <button class="btn-primary" id="saveBtn" onclick="saveProject()">保存</button>
+        </div>
+    </div>
+</div>
+<div class="toast" id="toast"></div>
+{% endblock %}
+{% block extra_js %}
+<script src="/static/js/project_edit.js"></script>
+{% endblock %}

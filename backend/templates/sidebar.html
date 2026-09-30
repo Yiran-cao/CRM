@@ -1,0 +1,27 @@
+<aside class="sidebar">
+    <div class="sidebar-header">
+        <div class="logo">📊 CRM 系统</div>
+        <div class="user-info" id="userInfo">
+            <span class="user-name">--</span>
+            <span class="role-tag" id="roleTag">--</span>
+        </div>
+    </div>
+    <nav class="sidebar-nav">
+        <a href="/dashboard" class="sidebar-link" data-page="dashboard">
+            <span class="nav-icon">📋</span> 工作台
+        </a>
+        <a href="/projects" class="sidebar-link" data-page="projects">
+            <span class="nav-icon">📁</span> 项目管理
+        </a>
+        <a href="/reports" class="sidebar-link" data-page="reports">
+            <span class="nav-icon">📝</span> 提交报表
+        </a>
+        <div class="nav-divider admin-only" style="display:none">管理功能</div>
+        <a href="/admin/review" class="sidebar-link admin-only" data-page="admin/review" style="display:none">
+            <span class="nav-icon">🔍</span> 考核管理
+        </a>
+    </nav>
+    <div class="sidebar-footer">
+        <button class="logout-btn" onclick="logout()">🚪 退出登录</button>
+    </div>
+</aside>

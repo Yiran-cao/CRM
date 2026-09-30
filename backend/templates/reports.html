@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}提交报表 - CRM 系统{% endblock %}
+{% block content %}
+<div class="page">
+    <div class="page-header">
+        <h2>📝 提交报表</h2>
+    </div>
+    <div class="page-body">
+        <!-- 状态卡片 -->
+        <div class="card-grid" id="reportStatusCards">
+            <div class="stat-card"><div class="stat-label">当前积分</div><div class="stat-value" id="rptPoints">--</div></div>
+            <div class="stat-card"><div class="stat-label">当前周期</div><div class="stat-value" id="rptPeriod">--</div></div>
+            <div class="stat-card"><div class="stat-label">截止日期</div><div class="stat-value" id="rptDeadline" style="font-size:14px">--</div></div>
+            <div class="stat-card"><div class="stat-label">状态</div><div class="stat-value" id="rptStatus">--</div></div>
+        </div>
+        <!-- 提交按钮 -->
+        <div style="margin-bottom:24px">
+            <button class="btn-primary" id="submitReportBtn" onclick="submitReport()" disabled>
+                📤 提交当前周期报表
+            </button>
+            <span style="margin-left:12px;font-size:13px;color:#e74c3c;display:none" id="submitHint">
+                当前积分不足，需要至少 5 分才能提交
+            </span>
+        </div>
+        <!-- 积分历史 -->
+        <h3 style="margin-bottom:12px;font-size:16px">积分历史</h3>
+        <div id="pointsHistoryTable">
+            <div class="empty-state"><div class="icon">📝</div><p>暂无积分记录</p></div>
+        </div>
+    </div>
+</div>
+<div class="toast" id="toast"></div>
+{% endblock %}
+{% block extra_js %}
+<script src="/static/js/reports.js"></script>
+{% endblock %}
